@@ -18,7 +18,7 @@ function App() {
         {
             currView === "Avatar" ?  <Avatar/> :
             currView === "Map" ? <Map/> :
-            currView === "RecentLogs" ? <RecentLogs/> : null
+            currView === "Recent" ? <RecentLogs/> : null
         }
       </main>
     </div>

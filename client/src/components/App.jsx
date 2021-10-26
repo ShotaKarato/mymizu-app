@@ -7,7 +7,7 @@ import RecentLogs from './RecentLogs';
 
 
 function App() {
-  const [currView, setCurrView] = useState("Avatar");
+  const [currView, setCurrView] = useState("Map"); // Change back to Avatar
 
   return (
     <div className="App">

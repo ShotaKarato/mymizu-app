@@ -1,9 +1,20 @@
-import React from 'react'
+import React from 'react';
+import "../styles/NavBar.css"
 
-function NavBar() {
+function NavBar(props) {
+    const { setCurrView } = props
+    
     return (
         <div>
-            <p>NavBar</p>
+            <nav id='menu'>
+            <input type='checkbox' id='responsive-menu'/>
+            <ul>
+                <li><a>Home</a></li>
+                <li><a>Avatar</a></li>
+                <li><a>Maps</a></li>
+                <li><a>Recents</a></li>
+            </ul>
+            </nav>
         </div>
     )
 }

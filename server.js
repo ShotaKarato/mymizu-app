@@ -16,6 +16,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use("/auth", require("./routes/auth"));
+app.use("/avatar", require("./routes/avatar"));
 
 (async () => {
   try {

@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import moment from "moment";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAvatar } from "../slices/avatarSlice";
 
 function Avatar() {
+  // setup redux
+  const dispatch = useDispatch();
   // get avatar data
+  useEffect(() => {
+    dispatch(fetchAvatar(1));
+  }, []);
+
+  // assign variable for avatar data
   const avatar = useSelector((state) => state.avatar);
   // level
   const level =
@@ -17,7 +25,6 @@ function Avatar() {
   const latestRefillTime = moment(avatar.date);
   const timeDiff = latestRefillTime.fromNow();
   const mood = timeDiff <= 3 ? "happy" : timeDiff <= 10 ? "normal" : "sad";
-
   return (
     <div>
       <figure>

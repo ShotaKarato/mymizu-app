@@ -1,16 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const initialState = {
-  id: 2,
-  user_id: 1,
-  level: 0,
-  date: "2021-10-26 18:46:05.279472+09",
-};
+export const fetchAvatar = createAsyncThunk(
+  "avatar/fetchAvatar",
+  async (data) => {
+    try {
+      let response = await axios.get(`/avatar/${data}`);
+      return response.data[0];
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
+let initialState = {};
 
 export const avatarSlice = createSlice({
   name: "avatar",
   initialState,
   reducers: {},
+  extraReducers: {
+    [fetchAvatar.fulfilled]: (state, action) => {
+      return action.payload;
+    },
+  },
 });
 
 export default avatarSlice.reducer;

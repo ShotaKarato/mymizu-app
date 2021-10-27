@@ -19,6 +19,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use("/auth", require("./routes/auth"));
+app.use("/avatar", require("./routes/avatar"));
 
 app.get("/locations", async (req, res) => {
 	const lat = Number(req.query.lat);

@@ -1,27 +1,28 @@
-import React, { useState } from "react";
-import "../styles/App.css";
-import NavBar from "./NavBar";
-import Avatar from "./Avatar";
-import Map from "./Map";
-import RecentLogs from "./RecentLogs";
+import React, { useState } from 'react';
+import '../styles/App.css';
+import NavBar from './NavBar';
+import Avatar from './Avatar';
+import Map from './Map';
+import RecentLogs from './RecentLogs';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+
 
 function App() {
-  const [currView, setCurrView] = useState("Map"); // Change back to Avatar
 
   return (
     <div className="App">
-      <header>
-        <NavBar setCurrView={setCurrView} />
-      </header>
-      <main>
-        {currView === "Avatar" ? (
-          <Avatar />
-        ) : currView === "Map" ? (
-          <Map />
-        ) : currView === "Recent" ? (
-          <RecentLogs />
-        ) : null}
-      </main>
+        <Router> 
+          <header>
+            <NavBar/>
+          </header>
+          <Switch>
+            <main>
+              <Route exact path = '/' component = {Avatar}></Route>
+              <Route exact path = '/map' component = {Map}></Route>
+              <Route exact path = '/logs' component = {RecentLogs}></Route>
+            </main>
+          </Switch>
+        </Router>
     </div>
   );
 }

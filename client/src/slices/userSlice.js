@@ -38,6 +38,18 @@ export const userSignUp = createAsyncThunk(
 	}
 );
 
+export const verify = createAsyncThunk("user/verify", async () => {
+	try {
+		const request = await axios.get("/auth", {
+			headers: JSON.parse(localStorage.getItem("mymizu")),
+		});
+		return request.data;
+	} catch (err) {
+		console.log(err);
+		return { err: err.response.data };
+	}
+});
+
 export const userSlice = createSlice({
 	name: "user",
 	initialState,
@@ -54,6 +66,11 @@ export const userSlice = createSlice({
 			if ("err" in action.payload) {
 				state.auth = false;
 			} else {
+				state.auth = true;
+			}
+		},
+		[verify.fulfilled]: (state, action) => {
+			if (action.payload === true) {
 				state.auth = true;
 			}
 		},

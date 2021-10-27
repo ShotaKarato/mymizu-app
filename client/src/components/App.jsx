@@ -27,6 +27,11 @@ function App() {
 								long: position.coords.longitude,
 							})
 						);
+					},
+					(err) => console.log(err),
+					{
+						timeout: 5000,
+						enableHighAccuracy: true,
 					}
 				);
 			}

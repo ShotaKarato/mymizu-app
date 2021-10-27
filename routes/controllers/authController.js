@@ -39,6 +39,9 @@ const signUp = async (req, res) => {
 			.insert({ user_name, password: hash, email })
 			.into("users")
 			.returning(["id", "user_name", "email"]);
+		await db
+			.insert({ user_id: user[0].id, level: 0 })
+			.into("avatar");
 		const token = generateToken(user[0].id);
 		delete user[0].id;
 		res.send({ token, user: user[0] });

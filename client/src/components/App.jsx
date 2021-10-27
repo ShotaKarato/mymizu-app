@@ -6,41 +6,57 @@ import Map from "./Map";
 import RecentLogs from "./RecentLogs";
 import { useDispatch } from "react-redux";
 import { nearLocationsAction } from "../slices/locationSlice";
+import {
+	HashRouter as Router,
+	Route,
+	Switch,
+} from "react-router-dom";
 
 function App() {
-	const [currView, setCurrView] = useState("Map"); // Change back to Avatar
-
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(
-				(position) => {
-					dispatch(
-						nearLocationsAction({
-							lat: position.coords.latitude,
-							long: position.coords.longitude,
-						})
-					);
-				}
-			);
-		}
+		const getLocation = () => {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(
+					(position) => {
+						console.log(position.coords.accuracy);
+						dispatch(
+							nearLocationsAction({
+								lat: position.coords.latitude,
+								long: position.coords.longitude,
+							})
+						);
+					}
+				);
+			}
+		};
+		getLocation();
 	}, []);
 
 	return (
 		<div className="App">
-			<header>
-				<NavBar setCurrView={setCurrView} />
-			</header>
-			<main>
-				{currView === "Avatar" ? (
-					<Avatar />
-				) : currView === "Map" ? (
-					<Map />
-				) : currView === "Recent" ? (
-					<RecentLogs />
-				) : null}
-			</main>
+			<Router>
+				<header>
+					<NavBar />
+				</header>
+				<Switch>
+					<main>
+						<Route
+							exact
+							path="/"
+							component={Avatar}></Route>
+						<Route
+							exact
+							path="/map"
+							component={Map}></Route>
+						<Route
+							exact
+							path="/logs"
+							component={RecentLogs}></Route>
+					</main>
+				</Switch>
+			</Router>
 		</div>
 	);
 }

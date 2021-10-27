@@ -1,21 +1,17 @@
 import React from 'react';
 import '../styles/NavBar.css'
+import { Link } from 'react-router-dom';
 
-function NavBar(props) {
-    const { setCurrView } = props;
+function NavBar() {
 
-    const changeView = (e) => {
-       setCurrView(e.target.innerHTML);
-    };
-    
     return (
         <div>
             <nav id='menu'>
             <input type='checkbox' id='responsive-menu'/>
             <ul>
-                <li><a onClick={changeView}>Avatar</a></li>
-                <li><a onClick={changeView}>Map</a></li>
-                <li><a onClick={changeView}>Recent</a></li>
+                <li><Link to='/'>Avatar</Link></li>
+                <li><Link to='/map'>Find Spots</Link></li>
+                <li><Link to='/logs'>Recent</Link></li>
             </ul>
             </nav>
         </div>

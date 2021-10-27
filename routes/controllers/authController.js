@@ -10,10 +10,7 @@ const signIn = async (req, res) => {
 			.where({ user_name: usernameOrEmail })
 			.orWhere({ email: usernameOrEmail });
 		if (user.length) {
-			const isTrue = await bcrypt.compare(
-				password,  
-				user[0].password
-			);
+			const isTrue = await bcrypt.compare(password, user[0].password);
 			if (isTrue) {
 				const token = generateToken(user[0].id);
 				delete user[0].password;
@@ -39,14 +36,13 @@ const signUp = async (req, res) => {
 			.insert({ user_name, password: hash, email })
 			.into("users")
 			.returning(["id", "user_name", "email"]);
-		await db
-			.insert({ user_id: user[0].id, level: 0 })
-			.into("avatar");
+		await db.insert({ user_id: user[0].id, level: 0 }).into("avatar");
 		const token = generateToken(user[0].id);
 		delete user[0].id;
 		res.send({ token, user: user[0] });
 	} catch (error) {
 		console.log(error);
+		res.status(403).send(error.constraint);
 	}
 };
 

@@ -1,31 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Pins from './Pins';
 import LocationInfo from './LocationInfo';
 import GoogleMapReact from 'google-map-react';
 import { useSelector } from 'react-redux';
+import '../styles/App.css'
 
 function Map() {
-    const allLocations = useSelector((state) => state.allLocations.locations)
+    const [displayInfo, setDisplayInfo] = useState(false);
+    const [chosenLocation, setChosenLocation] = useState();
+    const allLocations = useSelector((state) => state.allLocations.locations);
+
+    // For Google Maps
     const key = {key: process.env.REACT_APP_API_KEY}
     const center = { lat: 35.671736, lng: 139.694945 }
-    const style = { height: '100vh', width: '100%' }
+    const style = { height: '70vh', width: '60%' }
     const zoom = 12
 
     return (
-        <div style={style}>
-                <GoogleMapReact
-                bootstrapURLKeys={key}
-                defaultCenter= {center}
-                defaultZoom={zoom}
-                >
-                   { allLocations.map((location) => {
-                       return (
-                           <LocationInfo
-                           lat={location.latitude}
-                           lng={location.longitude}
-                           />
-                       )
-                   })}
-                </GoogleMapReact>
+        <div className="map-component">
+            <div style={style} className="google-map">
+                    <GoogleMapReact
+                    bootstrapURLKeys={key}
+                    defaultCenter= {center}
+                    defaultZoom={zoom}
+                    >
+                    { allLocations.map((location) => {
+                        return (
+                            <Pins
+                            lat={location.latitude}
+                            lng={location.longitude}
+                            location={location}
+                            setDisplayInfo={setDisplayInfo}
+                            setChosenLocation={setChosenLocation}
+                            />
+                        )
+                    })}
+                    </GoogleMapReact>
+            <div className="location-info">
+                    {displayInfo ? <LocationInfo chosenLocation={chosenLocation}/> : null}
+            </div>
+            </div>
         </div>
     )
 }

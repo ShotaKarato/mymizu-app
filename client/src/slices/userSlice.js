@@ -44,14 +44,14 @@ export const userSlice = createSlice({
 	reducers: {},
 	extraReducers: {
 		[userLogin.fulfilled]: (state, action) => {
-			if ("err" in action) {
+			if ("err" in action.payload) {
 				state.auth = false;
 			} else {
 				state.auth = true;
 			}
 		},
 		[userSignUp.fulfilled]: (state, action) => {
-			if ("err" in action) {
+			if ("err" in action.payload) {
 				state.auth = false;
 			} else {
 				state.auth = true;

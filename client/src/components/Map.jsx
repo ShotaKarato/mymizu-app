@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import LocationInfo from './LocationInfo';
 import GoogleMapReact from 'google-map-react';
 import { useSelector } from 'react-redux';

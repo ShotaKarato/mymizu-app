@@ -1,6 +1,8 @@
 const express = require("express");
+require("dotenv").config();
 const path = require("path");
-
+const config = require("./knexfile")[process.env.NODE_ENV];
+const knex = require("./knex/knex");
 const app = express();
 const port = process.env.PORT || 4000;
 
@@ -8,6 +10,14 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 }
 
-app.listen(port, () => {
-  console.log(`Server is running on ${port}`);
-});
+(async () => {
+  try {
+    await knex.migrate.latest(config);
+
+    app.listen(port, () => {
+      console.log(`Server is runnings on ${port}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+})();

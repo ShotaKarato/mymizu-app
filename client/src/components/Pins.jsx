@@ -15,7 +15,6 @@ function Pins(props) {
 			setDisplayInfo(true);
 		}
 	};
-
 	return (
 		<div>
 			<Icon

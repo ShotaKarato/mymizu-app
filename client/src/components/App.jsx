@@ -38,25 +38,25 @@ function App() {
 		getLocation();
 	}, []);
 
-  return (
-    <div className="App">
-        <Router> 
-          <header>
-            <NavBar/>
-          </header>
-          <Switch>
-            <main>
-              <Route exact path = '/' component = {Home}></Route>
-              <Route exact path = '/login' component = {LoginForm}></Route>
-              <Route exact path = '/signup' component = {SignUpForm}></Route>
-              <Route exact path = '/avatar' component = {Avatar}></Route>
-              <Route exact path = '/map' component = {Map}></Route>
-              <Route exact path = '/logs' component = {RecentLogs}></Route>
-            </main>
-          </Switch>
-        </Router>
-    </div>
-  );
+	return (
+		<div className="App">
+			<Router>
+				<header>
+					<NavBar />
+				</header>
+				<Switch>
+					<main>
+						<Route exact path="/" component={Home}></Route>
+						<Route exact path="/login" component={LoginForm}></Route>
+						<Route exact path="/signup" component={SignUpForm}></Route>
+						<Route exact path="/avatar" component={Avatar}></Route>
+						<Route exact path="/map" component={Map}></Route>
+						<Route exact path="/logs" component={RecentLogs}></Route>
+					</main>
+				</Switch>
+			</Router>
+		</div>
+	);
 }
 
 export default App;

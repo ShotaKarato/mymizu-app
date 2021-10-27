@@ -13,7 +13,7 @@ function Map() {
     // For Google Maps
     const key = {key: process.env.REACT_APP_API_KEY}
     const center = { lat: 35.671736, lng: 139.694945 }
-    const style = { height: '70vh', width: '60%' }
+    const style = { height: '600px', width: '60%' }
     const zoom = 12
 
     return (
@@ -24,9 +24,10 @@ function Map() {
                     defaultCenter= {center}
                     defaultZoom={zoom}
                     >
-                    { allLocations.map((location) => {
+                    { allLocations.map((location, index) => {
                         return (
                             <Pins
+                            key={index}
                             lat={location.latitude}
                             lng={location.longitude}
                             location={location}
@@ -36,10 +37,8 @@ function Map() {
                         )
                     })}
                     </GoogleMapReact>
-            <div className="location-info">
+            </div>
                     {displayInfo ? <LocationInfo chosenLocation={chosenLocation}/> : null}
-            </div>
-            </div>
         </div>
     )
 }

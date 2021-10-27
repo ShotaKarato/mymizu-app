@@ -12,7 +12,7 @@ function Pins(props) {
 
     return (
         <div>
-           <Icon icon="gis:poi" color="#73BCD4" width="50" height="50" onClick={revealInfo}/>
+           <Icon icon="gis:poi" color="rgba(79, 152, 211)" width="50" height="50" onClick={revealInfo}/>
         </div>
     )
 }

@@ -1,7 +1,4 @@
-import {
-	createAsyncThunk,
-	createSlice,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
@@ -14,9 +11,7 @@ const initialState = {
 export const nearLocationsAction = createAsyncThunk(
 	"location/nearLocationsAction",
 	async ({ lat, long }) => {
-		const request = await axios.get(
-			`/locations?lat=${lat}&long=${long}`
-		);
+		const request = await axios.get(`/locations?lat=${lat}&long=${long}`);
 		console.log(lat, long);
 		return {
 			locations: request.data.taps,
@@ -31,6 +26,12 @@ export const locationSlice = createSlice({
 	reducers: {
 		add: (state, action) => {
 			state.locations.push(action.payload);
+		},
+		setLngLat: (state, action) => {
+			return {
+				...state,
+				...action.payload,
+			};
 		},
 	},
 	extraReducers: {

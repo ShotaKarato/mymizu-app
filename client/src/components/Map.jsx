@@ -11,7 +11,9 @@ function Map() {
 	const { locations, user_lat, user_long, pending } =
 		useSelector((state) => state.allLocations);
 	// For Google Maps
-	const key = { key: process.env.REACT_APP_API_KEY };
+	const key = {
+		key: "AIzaSyChfiYM8eN8lMsdeR_LXcwx8wAM7_cd94k",
+	};
 	const center = { lat: user_lat, lng: user_long };
 	const style = { height: "600px", width: "60%" };
 	const zoom = 15;

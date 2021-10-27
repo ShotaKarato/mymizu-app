@@ -5,3 +5,48 @@
 body {
   background-color: antiquewhite;
 }
+
+.map-component {
+  display: flex;  
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.location-info {
+  margin-left: 40px;
+  background-color: white;
+  width: 400px;
+  height: 550px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 25px 31px 15px -4px rgba(79, 152, 211, 0.75);
+}
+
+img {
+  object-fit: cover;
+  max-width: 300px;
+  height: auto;
+  padding-top: 20px;
+}
+
+.location-info h3 {
+  padding-top: 20px;
+}
+
+#refill-button {
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  padding: 16px 40px;
+  color: white;
+  background-color: #80acdf;
+}
+
+#refill-button:hover {
+  background-color: #4173cf;
+}

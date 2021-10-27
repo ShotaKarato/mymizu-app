@@ -27,6 +27,16 @@ body {
   box-shadow: 25px 31px 15px -4px rgba(79, 152, 211, 0.75);
 }
 
+.log {
+  margin: 20px auto;
+  background-color: white;
+  width: 400px;
+  height: 50px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 25px 31px 15px -4px rgba(79, 152, 211, 0.75);
+}
+
 img {
   object-fit: cover;
   max-width: 300px;

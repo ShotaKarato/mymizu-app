@@ -10,9 +10,11 @@ function RecentLogs() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get("/api/");
+      const response = await axios.get("/api/refill");
+      setlogs(response.data);
     }
-  });
+    fetchData();
+  }, []);
 
   const renderLogs = () => {
     return logs.map((log) => {

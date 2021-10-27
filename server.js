@@ -39,7 +39,7 @@ app.get("/locations", async (req, res) => {
 	res.send(request.data);
 });
 app.listen(port, () => {
-	console.log(`Server is runnings on ${port}`);
+	console.log(`Server is runnings on${port}`);
 });
 (async () => {
 	try {

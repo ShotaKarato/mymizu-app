@@ -11,10 +11,11 @@ export const userLogin = createAsyncThunk(
     async(loginInput) => {
         try {
             const request = await axios.post('/auth/sign-in', loginInput);
-            console.log(request.data)
+            localStorage.setItem("mymizu", { token: JSON.stringify(request.data.token) })
+            return request.data
         }
         catch (err) {
-            console.log(err.response.data);
+            return {err: err.response.data}
         }
     }
 )
@@ -24,10 +25,11 @@ export const userSignUp = createAsyncThunk(
     async(signUpInput) => {
         try {
             const request = await axios.post('/auth/sign-up', signUpInput);
-            console.log(request.data)
+            localStorage.setItem("mymizu", { token: JSON.stringify(request.data.token) })
+            return request.data
         }
         catch (err) {
-            console.log(err.response.data);
+            return {err: err.response.data}
         }
     }
 )
@@ -37,7 +39,21 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-  },
+      [userLogin.fulfilled]: (state, action) => {
+        if ("err" in action) {
+            state.auth = false;
+        } else {
+            state.auth = true;
+        }
+      },
+      [userSignUp.fulfilled]: (state, action) => {
+        if ("err" in action) {
+            state.auth = false;
+        } else {
+            state.auth = true;
+        }
+      }
+  }
 });
 
 export default userSlice.reducer;

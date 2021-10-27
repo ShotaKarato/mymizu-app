@@ -11,7 +11,7 @@ const signIn = async (req, res) => {
 			.orWhere({ email: usernameOrEmail });
 		if (user.length) {
 			const isTrue = await bcrypt.compare(
-				password,
+				password,  
 				user[0].password
 			);
 			if (isTrue) {

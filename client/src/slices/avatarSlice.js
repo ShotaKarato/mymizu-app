@@ -1,17 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchAvatar = createAsyncThunk(
-  "avatar/fetchAvatar",
-  async (data) => {
-    try {
-      let response = await axios.get(`/avatar/${data}`);
-      return response.data[0];
-    } catch (error) {
-      console.error(error);
-    }
+export const fetchAvatar = createAsyncThunk("avatar/fetchAvatar", async () => {
+  try {
+    let response = await axios.get(`/avatar`, {
+      headers: {
+        token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoyLCJpYXQiOjE2MzUzMzE5NTF9.yYE7k-6wf3m2YmQq9I6FM-UtbX3mDlZO_LDFLqm_fY8",
+      },
+    });
+
+    return response.data[0];
+  } catch (error) {
+    console.error(error);
   }
-);
+});
 
 let initialState = {};
 

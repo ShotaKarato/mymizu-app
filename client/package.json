@@ -8,6 +8,9 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
+    "env-cmd": "^10.1.0",
+    "google-map-react": "^2.1.10",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -16,8 +19,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "env-cmd -f .env react-scripts start",
+    "build": "env-cmd -f .env react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -38,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@iconify/react": "^3.0.1"
   }
 }

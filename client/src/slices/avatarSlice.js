@@ -6,7 +6,7 @@ export const fetchAvatar = createAsyncThunk("avatar/fetchAvatar", async () => {
     let response = await axios.get(`/avatar`, {
       headers: {
         token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoyLCJpYXQiOjE2MzUzMzE5NTF9.yYE7k-6wf3m2YmQq9I6FM-UtbX3mDlZO_LDFLqm_fY8",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoyL…yNDV9.E0xZ6aezLygpzZmsMpyiYr6O0cBm74PTKYRJRUMtxCM",
       },
     });
 

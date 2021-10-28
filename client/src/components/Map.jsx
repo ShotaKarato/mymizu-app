@@ -4,6 +4,7 @@ import LocationInfo from "./LocationInfo";
 import GoogleMapReact from "google-map-react";
 import { useSelector } from "react-redux";
 import "../styles/App.css";
+import Filter from "./Filter";
 
 function Map() {
 	const [displayInfo, setDisplayInfo] = useState(false);
@@ -21,6 +22,7 @@ function Map() {
 	return (
 		<div className="map-component">
 			<div className="google-map">
+				<Filter />
 				{!pending && (
 					<GoogleMapReact
 						className="map"

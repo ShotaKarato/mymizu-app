@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
 	user_lat: "",
 	user_long: "",
+	default: [],
 	locations: [],
 	pending: false,
 };
@@ -14,6 +15,7 @@ export const nearLocationsAction = createAsyncThunk(
 		const request = await axios.get(`/locations?lat=${lat}&long=${long}`);
 		console.log(request.data);
 		return {
+			default: request.data.taps,
 			locations: request.data.taps,
 			user_long: long,
 			user_lat: lat,
@@ -33,6 +35,17 @@ export const locationSlice = createSlice({
 				...action.payload,
 			};
 		},
+
+		filterLoc: (state, action) => {
+			console.log(action.payload);
+			if (action.payload === "") {
+				state.locations = state.default;
+			} else {
+				state.locations = state.default.filter(
+					(loc) => loc.category_id === Number(action.payload)
+				);
+			}
+		},
 	},
 	extraReducers: {
 		[nearLocationsAction.pending]: (state) => {
@@ -48,4 +61,5 @@ export const locationSlice = createSlice({
 	},
 });
 
+export const { filterLoc, setLngLat } = locationSlice.actions;
 export default locationSlice.reducer;

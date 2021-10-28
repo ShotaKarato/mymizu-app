@@ -17,7 +17,13 @@ function NavBar() {
 		<div>
 			<nav id="menu">
 				<input type="checkbox" id="responsive-menu" />
-				<ul>
+				<label htmlFor="responsive-menu">
+					<i className="fa fa-menu"></i>
+				</label>
+				<ul
+					onClick={() =>
+						(document.querySelector("#responsive-menu").checked = false)
+					}>
 					<li>
 						<Link to="/">Home</Link>
 					</li>

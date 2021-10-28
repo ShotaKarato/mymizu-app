@@ -15,10 +15,10 @@ function Home() {
           <p>technology × sustainability</p>
         </div>
         <div id="message">
-          We're the team whose mission is to make people's lives<br></br> more
-          fun and more sustainable through technology.<br></br>
+          We're the team whose mission is to make people's lives more fun and
+          more sustainable through technology.
           <br></br>
-          私たちは、テクノロジーを通して、人々の生活をより楽しく、<br></br>
+          私たちは、テクノロジーを通して、人々の生活をより楽しく、
           そしてより持続可能にすることをミッションとするチームです。
         </div>
       </div>

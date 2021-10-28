@@ -7,7 +7,6 @@ route.use(require("../middleware/verifyToken"));
 route.get("/", async (req, res) => {
   try {
     const user_id = res.locals.user;
-    console.log(user_id);
     let results = await knex.select().table("avatar").where("user_id", user_id);
     res.send(results);
   } catch (error) {
@@ -18,7 +17,9 @@ route.get("/", async (req, res) => {
 route.put("/", async (req, res) => {
   try {
     const user_id = res.locals.user;
+    console.log(req.body);
     await knex("avatar").where("user_id", user_id).update(req.body);
+    res.send(true);
   } catch (error) {
     console.log(error.message);
   }

@@ -8,6 +8,7 @@
 	top: 0;
 	left: 0;
 	width: 100%;
+	z-index: 100;
 }
 #menu ul,
 #menu li {
@@ -103,7 +104,7 @@
 		width: 100%;
 	}
 	#menu {
-		position: relative;
+		/* position: fixed; */
 		background: #02a4cc;
 		background: linear-gradient(90deg, #00a3cc, #afe7f0);
 		transition: 0.5s;

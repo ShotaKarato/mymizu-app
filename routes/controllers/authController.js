@@ -46,7 +46,12 @@ const signUp = async (req, res) => {
 	}
 };
 
+const verify = (req, res) => {
+	res.send(true);
+};
+
 module.exports = {
 	signIn,
 	signUp,
+	verify,
 };

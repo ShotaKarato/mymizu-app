@@ -1,13 +1,17 @@
 import React from "react";
 import "../styles/NavBar.css";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { userLogout } from "../slices/userSlice";
 
 function NavBar() {
 	const auth = useSelector((state) => state.user.auth);
-	const logout = () => {
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const logout = async () => {
 		//logout
-		console.log("logout");
+		await dispatch(userLogout());
+		history.push("/");
 	};
 	return (
 		<div>

@@ -53,7 +53,12 @@ export const verify = createAsyncThunk("user/verify", async () => {
 export const userSlice = createSlice({
 	name: "user",
 	initialState,
-	reducers: {},
+	reducers: {
+		userLogout: (state) => {
+			state.auth = false;
+			localStorage.removeItem("mymizu");
+		},
+	},
 	extraReducers: {
 		[userLogin.fulfilled]: (state, action) => {
 			if ("err" in action.payload) {
@@ -72,9 +77,11 @@ export const userSlice = createSlice({
 		[verify.fulfilled]: (state, action) => {
 			if (action.payload === true) {
 				state.auth = true;
+			} else {
+				state.auth = false;
 			}
 		},
 	},
 });
-
+export const { userLogout } = userSlice.actions;
 export default userSlice.reducer;

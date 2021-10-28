@@ -8,7 +8,7 @@ import Avatar from "./Avatar";
 import Map from "./Map";
 import RecentLogs from "./RecentLogs";
 import { useDispatch, useSelector } from "react-redux";
-import { nearLocationsAction } from "../slices/locationSlice";
+import { nearLocationsAction, setLngLat } from "../slices/locationSlice";
 import {
 	HashRouter as Router,
 	Route,
@@ -27,6 +27,12 @@ function App() {
 				navigator.geolocation.getCurrentPosition(
 					(position) => {
 						console.log(position.coords.accuracy);
+						dispatch(
+							setLngLat({
+								user_long: position.coords.longitude,
+								user_lat: position.coords.latitude,
+							})
+						);
 						dispatch(
 							nearLocationsAction({
 								lat: position.coords.latitude,

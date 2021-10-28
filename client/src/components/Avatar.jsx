@@ -12,7 +12,6 @@ function Avatar() {
   useEffect(() => {
     dispatch(fetchAvatar());
   }, []);
-
   // assign variable for avatar data
   const avatar = useSelector((state) => state.avatar);
   // level

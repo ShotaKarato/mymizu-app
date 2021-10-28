@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "../styles/LocationInfo.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchLogsNumber } from "../slices/logSlice";
 import moment from "moment";
 import axios from "axios";
 
@@ -14,10 +16,9 @@ function LocationInfo(props) {
     "http://fremontgurdwara.org/wp-content/uploads/2020/06/no-image-icon-2.png";
   const imgResult = chosenLocation.photo_url;
 
-  const { user_id } = useSelector((state) => state.avatar);
-
   // toggle for the thank you message
   const [showMessage, setShowMessage] = useState(false);
+  const history = useHistory();
   const toggleMessage = () => {
     setShowMessage((prevMessage) => {
       const newShowMessage = prevMessage ? false : true;
@@ -28,20 +29,50 @@ function LocationInfo(props) {
         const newShowMessage = prevMessage ? false : true;
         return newShowMessage;
       });
+      history.push("/avatar");
     }, 3000);
   };
 
-  // update refill log and avatar's latest refill date
-  const logRefill = () => {
+  // check how many logs exists
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchLogsNumber());
+  }, []);
+  const log = useSelector((state) => state.log);
+  // update refill table and level based on the number of logs
+  const logRefill = async () => {
     const currentTime = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
-    axios.post("/refill", { user_id: user_id });
-    axios.put(
-      "/avatar",
-      { date: currentTime },
-      {
-        headers: JSON.parse(localStorage.getItem("mymizu")),
-      }
-    );
+    if (log.length === 4) {
+      await axios.post(
+        "/refill",
+        {},
+        {
+          headers: JSON.parse(localStorage.getItem("mymizu")),
+        }
+      );
+      await axios.put(
+        "/avatar",
+        { date: currentTime, level: 1 },
+        {
+          headers: JSON.parse(localStorage.getItem("mymizu")),
+        }
+      );
+    } else {
+      await axios.post(
+        "/refill",
+        {},
+        {
+          headers: JSON.parse(localStorage.getItem("mymizu")),
+        }
+      );
+      await axios.put(
+        "/avatar",
+        { date: currentTime },
+        {
+          headers: JSON.parse(localStorage.getItem("mymizu")),
+        }
+      );
+    }
   };
 
   return (

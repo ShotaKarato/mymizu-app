@@ -1,0 +1,72 @@
+#banner {
+  background-image: url("../image/ocean.jpg");
+  background-size: cover;
+  background-position: left;
+  height: 350px;
+  margin: 0;
+  text-align: center;
+}
+
+#banner .content {
+  border: 8px solid white;
+  position: relative;
+  top: 30px;
+  width: 60%;
+  margin: 0 auto;
+  padding-bottom: 1em;
+}
+
+#banner .content h1 {
+  margin: 0;
+  color: white;
+  font-family: 'Corben', cursive;
+  font-size: 4em;
+  font-weight: 600;
+  text-align: center;
+}
+
+#banner .content p {
+  margin: 0;
+  color: white;
+  font-size: 2em;
+  text-align: center;
+}
+
+#message {
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+  font-size: 1em;
+  color: white;
+}
+
+@media (max-width: 800px) {
+
+  #banner .content {
+    border: 4px solid white;
+    position: relative;
+    top: 30px;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 1em;
+  }
+
+  #banner .content h1 {
+    margin: 0;
+    color: white;
+    font-family: 'Corben', cursive;
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  #banner .content p {
+    margin: 0;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+  }
+}
+

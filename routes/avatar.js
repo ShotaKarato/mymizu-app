@@ -15,4 +15,13 @@ route.get("/", async (req, res) => {
   }
 });
 
+route.put("/", async (req, res) => {
+  try {
+    const user_id = res.locals.user;
+    await knex("avatar").where("user_id", user_id).update(req.body);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 module.exports = route;

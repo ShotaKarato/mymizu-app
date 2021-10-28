@@ -12,7 +12,7 @@ export const nearLocationsAction = createAsyncThunk(
 	"location/nearLocationsAction",
 	async ({ lat, long }) => {
 		const request = await axios.get(`/locations?lat=${lat}&long=${long}`);
-		console.log(lat, long);
+		console.log(request.data);
 		return {
 			locations: request.data.taps,
 			user_long: long,

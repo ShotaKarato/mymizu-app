@@ -4,6 +4,10 @@
 	color: #fff;
 	height: 61px;
 	padding-left: 18px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
 }
 #menu ul,
 #menu li {
@@ -13,11 +17,13 @@
 }
 #menu ul {
 	width: 100%;
+	height: 100%;
 }
 #menu li {
 	float: left;
 	display: inline;
 	position: relative;
+	height: 100%;
 }
 #menu a,
 .logout {
@@ -27,12 +33,19 @@
 	text-decoration: none;
 	color: #ffffff;
 	font-size: 18px;
+	height: 100%;
+}
+.logout {
+	padding: 0 14px !important;
+	font-size: 18px;
+	cursor: pointer;
 }
 #menu a.dropdown-arrow:after {
 	content: "\25BE";
 	margin-left: 5px;
 }
-#menu li a:hover {
+#menu li a:hover,
+.logout:hover {
 	color: #ffffff;
 	background: #a0d7f2;
 }
@@ -83,11 +96,23 @@
 }
 
 @media screen and (max-width: 800px) {
+	#responsive-menu {
+		display: none !important;
+	}
+	header {
+		width: 100%;
+	}
 	#menu {
 		position: relative;
+		background: #02a4cc;
+		background: linear-gradient(90deg, #00a3cc, #afe7f0);
+		transition: 0.5s;
+		width: 100%;
 	}
 	#menu ul {
-		background: #111;
+		background: #0099cc;
+		transition: 0.5s;
+		background: linear-gradient(90deg, #00a3cc, #afe7f0);
 		position: absolute;
 		top: 100%;
 		right: 0;

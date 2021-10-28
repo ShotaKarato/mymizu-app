@@ -3,6 +3,7 @@ import "../styles/LocationInfo.css";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import axios from "axios";
+import noImg from "../assets/noImage.png";
 
 // avoid the cors issue
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
@@ -10,8 +11,7 @@ axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
 function LocationInfo(props) {
 	const { chosenLocation } = props;
-	const noImg =
-		"http://fremontgurdwara.org/wp-content/uploads/2020/06/no-image-icon-2.png";
+
 	const imgResult = chosenLocation.photo_url;
 
 	const { user_id } = useSelector((state) => state.avatar);

@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
+	filter: "",
 	user_lat: "",
 	user_long: "",
 	default: [],
@@ -45,6 +46,7 @@ export const locationSlice = createSlice({
 					(loc) => loc.category_id === Number(action.payload)
 				);
 			}
+			state.filter = action.payload;
 		},
 	},
 	extraReducers: {

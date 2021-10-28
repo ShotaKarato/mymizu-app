@@ -1,9 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { filterLoc } from "../slices/locationSlice";
 
 const Filter = () => {
 	const dispatch = useDispatch();
+	const filterChoice = useSelector((state) => state.allLocations.filter);
 
 	const filter = (e) => {
 		dispatch(filterLoc(e.target.value));
@@ -11,7 +12,7 @@ const Filter = () => {
 
 	return (
 		<div className="selectFilter">
-			<select defaultValue="" onChange={filter}>
+			<select defaultValue={filterChoice} onChange={filter}>
 				<option value="">---All---</option>
 				<option value="1">Natural Springs</option>
 				<option value="2">Public, Limited Access</option>

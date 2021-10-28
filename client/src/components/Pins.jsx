@@ -2,17 +2,16 @@ import React from "react";
 import { Icon } from "@iconify/react";
 
 function Pins(props) {
-	const {
-		location,
-		setDisplayInfo,
-		setChosenLocation,
-		user,
-	} = props;
+	const { location, setDisplayInfo, setChosenLocation, user } = props;
 
 	const revealInfo = () => {
 		if (!user) {
 			setChosenLocation(location);
 			setDisplayInfo(true);
+			const locContainer = document.querySelector(".location-info");
+			if (locContainer) {
+				locContainer.classList.remove("closeLoc");
+			}
 		}
 	};
 	return (

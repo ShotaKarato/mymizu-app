@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import "../styles/LocationInfo.css";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLogsNumber } from "../slices/logSlice";
 import moment from "moment";
 import axios from "axios";
+import noImg from "../assets/noImage.png";
 
 // avoid the cors issue
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
@@ -12,9 +13,6 @@ axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
 function LocationInfo(props) {
   const { chosenLocation } = props;
-  const noImg =
-    "http://fremontgurdwara.org/wp-content/uploads/2020/06/no-image-icon-2.png";
-  const imgResult = chosenLocation.photo_url;
 
   // toggle for the thank you message
   const [showMessage, setShowMessage] = useState(false);
@@ -74,16 +72,19 @@ function LocationInfo(props) {
       );
     }
   };
+  const imgResult = chosenLocation.photo_url;
 
+  const locRef = useRef();
+  const closeLoc = () => {
+    locRef.current.classList.add("closeLoc");
+  };
   return (
     <>
-      <div className="location-info">
+      <div ref={locRef} className={`location-info`}>
+        <i className="closeIcon fa fa-close" onClick={closeLoc}></i>
         <h3>{chosenLocation.name}</h3>
         <p>{chosenLocation.address}</p>
-        <img
-          src={imgResult === null ? noImg : imgResult}
-          alt="location image"
-        />
+        <img src={imgResult === null ? noImg : imgResult} alt="location" />
         <br />
         <button
           id="refill-button"

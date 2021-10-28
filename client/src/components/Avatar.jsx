@@ -25,8 +25,10 @@ function Avatar() {
 
   // mood
   const latestRefillTime = moment(avatar.date);
-  const timeDiff = latestRefillTime.fromNow();
-  const mood = timeDiff <= 3 ? "happy" : timeDiff <= 10 ? "normal" : "sad";
+  const currentTime = moment(new Date());
+  const duration = moment.duration(currentTime.diff(latestRefillTime));
+  const hours = duration.asHours();
+  const mood = hours <= 3 ? "happy" : hours <= 10 ? "normal" : "sad";
 
   return (
     <div className="avatar-wrapper">
@@ -37,7 +39,7 @@ function Avatar() {
         </li>
         <li className="avatar-meter-item">
           <span>Latest Refill</span>
-          <br /> {latestRefillTime.format("MMMM d, YYYY")}
+          <br /> {latestRefillTime.format("MMMM D, YYYY")}
         </li>
       </ul>
       <figure className="avatar">
@@ -47,9 +49,7 @@ function Avatar() {
         />
       </figure>
       <button className="btn-refill">
-        <Link to="/map" style={{ color: "#fff", textDecoration: "none" }}>
-          Find Spots
-        </Link>
+        <Link to="/map">Find Spots</Link>
       </button>
     </div>
   );

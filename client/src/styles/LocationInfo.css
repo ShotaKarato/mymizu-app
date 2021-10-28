@@ -1,0 +1,15 @@
+.ty-message {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(136, 136, 136, 0.7);
+}
+.ty-img img {
+  max-width: 100%;
+  height: auto;
+}
+.hidden {
+  display: none;
+}

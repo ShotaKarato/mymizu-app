@@ -4,7 +4,7 @@ const route = express.Router();
 
 route.post("/", async (req, res) => {
   try {
-    console.log(req.body);
+    await knex("refill").insert(req.body);
   } catch (error) {
     console.log(error.message);
   }

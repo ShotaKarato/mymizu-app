@@ -8,21 +8,22 @@ import "../styles/App.css";
 function Map() {
 	const [displayInfo, setDisplayInfo] = useState(false);
 	const [chosenLocation, setChosenLocation] = useState();
-	const { locations, user_lat, user_long, pending } =
-		useSelector((state) => state.allLocations);
+	const { locations, user_lat, user_long, pending } = useSelector(
+		(state) => state.allLocations
+	);
 	// For Google Maps
 	const key = {
 		key: "AIzaSyChfiYM8eN8lMsdeR_LXcwx8wAM7_cd94k",
 	};
 	const center = { lat: user_lat, lng: user_long };
-	const style = { height: "600px", width: "60%" };
 	const zoom = 15;
 
 	return (
 		<div className="map-component">
-			<div style={style} className="google-map">
+			<div className="google-map">
 				{!pending && (
 					<GoogleMapReact
+						className="map"
 						bootstrapURLKeys={key}
 						defaultCenter={center}
 						defaultZoom={zoom}>
@@ -39,19 +40,11 @@ function Map() {
 							);
 						})}
 
-						{
-							<Pins
-								lat={user_lat}
-								lng={user_long}
-								user={true}
-							/>
-						}
+						{<Pins lat={user_lat} lng={user_long} user={true} />}
 					</GoogleMapReact>
 				)}
 			</div>
-			{displayInfo ? (
-				<LocationInfo chosenLocation={chosenLocation} />
-			) : null}
+			{displayInfo ? <LocationInfo chosenLocation={chosenLocation} /> : null}
 		</div>
 	);
 }

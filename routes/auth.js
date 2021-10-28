@@ -22,17 +22,4 @@ route.get(
 	}
 );
 
-route.get(
-	"/api/refill",
-	async (req, res) => {
-		try {
-			const refillLogs = await knex.select().table("refill");
-			res.json(refillLogs);
-		} catch (err) {
-			console.error("Error loading locations!", err);
-			res.sendStatus(500);
-		}
-	}
-);
-
 module.exports = route;

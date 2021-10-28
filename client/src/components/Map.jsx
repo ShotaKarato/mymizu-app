@@ -23,7 +23,7 @@ function Map() {
 		<div className="map-component">
 			<div className="google-map">
 				<Filter />
-				{!pending && (
+				{user_lat && (
 					<GoogleMapReact
 						className="map"
 						bootstrapURLKeys={key}

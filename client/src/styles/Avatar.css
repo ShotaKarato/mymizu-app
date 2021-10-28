@@ -35,6 +35,7 @@
 }
 
 .avatar img {
+	margin-top: -100px;
 	max-width: 300px;
 	width: 80%;
 	animation: mochi 1s infinite alternate;

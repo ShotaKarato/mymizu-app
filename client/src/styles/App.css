@@ -39,6 +39,7 @@ main {
 	height: 90%;
 	width: 60%;
 	overflow: hidden;
+	position: relative;
 }
 
 .location-info {
@@ -89,6 +90,21 @@ img {
 
 #refill-button:hover {
 	background-color: #4173cf;
+}
+
+.selectFilter {
+	z-index: 100;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.selectFilter select {
+	padding: 10px;
+	box-shadow: 1px 1px 5px rgb(70, 69, 69);
+	border-radius: 13px;
+	outline: none;
+	border: none;
 }
 
 @media only screen and (max-width: 800px) {

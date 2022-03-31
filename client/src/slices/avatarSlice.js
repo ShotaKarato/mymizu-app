@@ -3,7 +3,6 @@ import axios from "axios";
 
 export const fetchAvatar = createAsyncThunk("avatar/fetchAvatar", async () => {
   try {
-    console.log("Hi");
     let response = await axios.get(`/avatar`, {
       headers: JSON.parse(localStorage.getItem("mymizu")),
     });
